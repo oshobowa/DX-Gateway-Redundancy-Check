@@ -174,7 +174,6 @@ aws quicksight create-dashboard --aws-account-id <> --dashboard-id DX_Inventory 
 
 ```
 aws quicksight list-users --aws-account-id 1234567890 --region us-east-1 --namespace default
-
 ```
 
 Update Dashboard permission using the command and json below
