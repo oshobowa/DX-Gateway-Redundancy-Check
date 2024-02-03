@@ -12,7 +12,7 @@ Direct Connect Gateway allows you to connect your on-prem data center to multipl
 
 Virtual Private Gateway or VGW is a virtual network gateway that is used to associate a VPC (Virtual Private Cloud) with other network gateways. You then create a private virtual interface (VIF) and associate it with the VGW. The VIF enables connectivity between the VGW and Direct Connect. This establishes direct private access from your on-premises network to the VPC over the Direct Connect link. Over the same Direct Connect link, you can create multiple VGWs and private VIFs to connect to different VPCs. This allows you to access multiple VPCs directly from your on-premises network over a single Direct Connect connection. The VGWs and VIFs provide isolated, private connectivity between your network and each VPC.
 
-##Problem Statement
+## Problem Statement
 
 AWS Trusted Advisor is a service provided by Amazon Web Services that performs automated checks on an AWS account and makes recommendations to improve performance, security, fault tolerance, and cost optimization. The Trusted Advisor currently provides fault tolerance checks for AWS Direct Connect connections that are set up with a Virtual Private Gateway (VGW). These checks help ensure the Direct Connect connection has redundancy in case of a network failure.
 However, for Direct Connect setups using a Direct Connect Gateway (DXGW) instead of a VGW, Trusted Advisor does not currently perform fault tolerance checks. This presents an issue for customers using Direct Connect with DXGW, as they lack visibility into the redundancy of their connection through Trusted Advisor.
@@ -20,7 +20,7 @@ To address this gap and provide fault tolerance monitoring for DXGW Direct Conne
 The results of the fault tolerance checks are presented on a dashboard. This provides DXGW Direct Connect customers visibility into whether their connection has the proper redundancy to maintain availability even in the event of a failure. By creating this tool, I enabled Trusted Advisor-like fault tolerance monitoring for an AWS setup that it does not currently cover out of the box.
 
 
-##Solution
+## Solution
 
 The solution was created using Lambda (serverless compute) to call the DescribeVirtualInterface API to collect DirectConnect data for a customer's AWS infrastructure. Lambda is a serverless compute service that allows you to run code without provisioning servers. A Lambda function was created that calls the DescribeVirtualInterface API, which is a DirectConnect API that provides information about configured virtual interfaces. This allows the solution to programmatically collect DirectConnect configuration data for the customer's AWS environment.
 The Lambda function will be triggered by EventBridge on a schedule defined by the customer. EventBridge is a serverless event bus that can trigger Lambda functions on a scheduled basis. The customer can define how often they want the Lambda function to execute and collect the DirectConnect data.
@@ -35,7 +35,7 @@ The solution also provides a centralized inventory and easy search lookup of vir
 
 ![image](https://github.com/oshobowa/DX-Gateway-Redundancy-Check/blob/main/image.png)
 
-##Implementation
+## Implementation
 
 Create a Lambda function and grant the Lambda function's execution role permissions to access an S3 bucket, using the following code to create the Lambda function:
 
@@ -172,7 +172,9 @@ aws quicksight create-dashboard --aws-account-id <> --dashboard-id DX_Inventory 
 }
 ```
 
-```aws quicksight list-users --aws-account-id 1234567890 --region us-east-1 --namespace default
+```
+aws quicksight list-users --aws-account-id 1234567890 --region us-east-1 --namespace default
+
 ```
 
 Update Dashboard permission using the command and json below
