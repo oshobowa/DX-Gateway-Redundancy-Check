@@ -1,3 +1,5 @@
+**Author: Olajide Shobowale**
+
 # AWS Direct Connect Redundancy Monitoring Solution
 
 AWS Direct Connect (DX) is a cloud service provided by Amazon Web Services (AWS) that allows you to establish a dedicated private connection from your on-premises data center or office location to AWS. It provides a more consistent network experience than internet-based connections by bypassing the public internet. tI provides a dedicated bridge between on-premises infrastructure and the AWS cloud. AWS Direct Connect facilitates establishing a dedicated network connection from on-premises sites to AWS, giving better performance, consistency, and security for workloads using AWS resources. It is a key enabling service for hybrid architectures.
